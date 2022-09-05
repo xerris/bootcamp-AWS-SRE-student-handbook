@@ -5,41 +5,44 @@ using Xerris.DotNet.TestAutomation.Factory;
 using Xerris.SRE.ProductCatalog.Controllers;
 using Xerris.SRE.ProductCatalog.Models;
 using Xerris.SRE.ProductCatalog.Repositories;
+using Xerris.SRE.ProductCatalog.Services;
 
 namespace Xerris.SRE.ProductCatalog.Tests.Controllers;
 
 [Collection("Models")]
 public class ProductsControllerTests : MockBase
 {
-    private readonly Mock<IProductRepository> repository;
+    private readonly Mock<IProductService> service;
     private readonly ProductsController controller;
 
     public ProductsControllerTests()
     {
-        repository = Strict<IProductRepository>();
-        controller = new ProductsController(repository.Object);
+        service = Strict<IProductService>();
+        controller = new ProductsController(service.Object);
     }
 
     [Fact]
-    public void GetProducts()
+    public async Task GetProducts()
     {
         var fromRepository = new List<Product>
         {
             FactoryGirl.Build<Product>(),
             FactoryGirl.Build<Product>(x => x.Name = "Hot Chocolate")
         };
-        repository.Setup(x => x.All).Returns(fromRepository);
+        service.Setup(x => x.GetAllProducts())
+               .ReturnsAsync(fromRepository);
 
-        var results = controller.Get();
+        var results = await controller.GetAllProducts();
         
         results.Should().NotBeNull();
     }
 
     [Fact]
-    public void GetProductBySku()
+    public async Task GetProductBySku()
     {
         var product = FactoryGirl.Build<Product>();
-        repository.Setup(x => x.FindBySku(product.Sku)).Returns(product);
-        controller.GetBySku(product.Sku).Should().NotBeNull();
+        service.Setup(x => x.FindBySku(product.Sku)).ReturnsAsync(product);
+        var found = await controller.GetBySku(product.Sku);
+        found.Should().NotBeNull();
     }
 }

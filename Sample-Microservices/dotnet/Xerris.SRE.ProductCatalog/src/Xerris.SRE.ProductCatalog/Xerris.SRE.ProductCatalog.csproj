@@ -8,6 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Refit" Version="6.3.2" />
+        <PackageReference Include="Refit.HttpClientFactory" Version="6.3.2" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
         <PackageReference Include="Xerris.DotNet.Core" Version="0.1.2" />
     </ItemGroup>

@@ -21,6 +21,18 @@ public class PriceControllerTests : MockBase
     }
 
     [Fact]
+    public void GetAllPrices()
+    {
+        var prices = new Price[]
+        {
+            FactoryGirl.Build<Price>(x => x.RetailPrice = 2.29m),
+            FactoryGirl.Build<Price>(x => x.RetailPrice = 1.19m)
+        };
+        repository.Setup(x => x.All).Returns(prices);
+        controller.GetAllPrices().Should().NotBeEmpty();
+    }
+
+    [Fact]
     public void GetPriceBySku()
     {
         var product = FactoryGirl.Build<Price>();

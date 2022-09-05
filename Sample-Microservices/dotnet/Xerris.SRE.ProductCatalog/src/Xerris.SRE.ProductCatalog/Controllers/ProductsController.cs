@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using Xerris.SRE.ProductCatalog.Models;
 using Xerris.SRE.ProductCatalog.Repositories;
+using Xerris.SRE.ProductCatalog.Services;
 
 namespace Xerris.SRE.ProductCatalog.Controllers;
 
@@ -9,24 +10,24 @@ namespace Xerris.SRE.ProductCatalog.Controllers;
 [Route("[controller]")]
 public class ProductsController : Controller
 {
-    private readonly IProductRepository productRepository;
+    private readonly IProductService service;
     
-    public ProductsController(IProductRepository productRepository)
+    public ProductsController(IProductService service)
     {
-        this.productRepository = productRepository;
+        this.service = service;
     }
 
     [HttpGet(Name = "GetProducts")]
-    public IEnumerable<Product> Get()
+    public async Task<IEnumerable<Product>> GetAllProducts()
     {
         Log.Information("Fetching all Products");
-        return productRepository.All;
+        return await service.GetAllProducts();
     }
     
-    [HttpGet("/{sku}",Name = "GetProductBySku")]
-    public Product GetBySku(Guid sku)   
+    [HttpGet("/{sku:guid}",Name = "GetProductBySku")]
+    public async Task<Product> GetBySku(Guid sku)   
     {
         Log.Information("Fetching Product {@Sku}", sku);
-        return productRepository.FindBySku(sku);
+        return await service.FindBySku(sku);
     }
 }

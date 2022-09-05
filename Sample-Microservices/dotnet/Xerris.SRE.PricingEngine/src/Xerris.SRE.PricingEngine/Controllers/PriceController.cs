@@ -16,7 +16,10 @@ public class PriceController : Controller
         this.priceRepository = priceRepository;
     }
 
-    [HttpGet("/{sku}",Name = "GetPriceBySku")]
+    [HttpGet("/prices",Name = "GetAllPrices")]
+    public IEnumerable<Price> GetAllPrices() => priceRepository.All;
+
+    [HttpGet("/prices/{sku:guid}",Name = "GetPriceBySku")]
     public Price GetPriceBySku(Guid sku)   
     {
         Log.Information("Fetching price for Product {@Sku}", sku);

@@ -2,12 +2,17 @@ using Xerris.SRE.PricingEngine.Models;
 
 namespace Xerris.SRE.PricingEngine.Repositories;
 
-public interface IPriceRepository {
+public interface IPriceRepository
+{
+    IEnumerable<Price> All { get; }
     Price FindBySku(Guid sku);
 }
 
 public class PriceRepository : IPriceRepository
 {
+    public IEnumerable<Price> All => Prices;
+    public Price FindBySku(Guid sku) => Prices.FirstOrDefault(x => x.Sku == sku);
+
     private static readonly List<Price> Prices = new()
     {
         new Price
@@ -27,8 +32,6 @@ public class PriceRepository : IPriceRepository
             Sku = new Guid("76ad06f0-8ced-401e-862d-da27b1b496bb"),
             RetailPrice = 4.25m,
             WholesalePrice = 2.50m
-        },
+        }
     };
-
-    public Price FindBySku(Guid sku) => Prices.FirstOrDefault(x => x.Sku == sku);
 }
