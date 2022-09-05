@@ -4,6 +4,7 @@ using Xerris.DotNet.TestAutomation;
 using Xerris.DotNet.TestAutomation.Factory;
 using Xerris.SRE.ProductCatalog.Controllers;
 using Xerris.SRE.ProductCatalog.Models;
+using Xerris.SRE.ProductCatalog.Repositories;
 
 namespace Xerris.SRE.ProductCatalog.Tests.Controllers;
 

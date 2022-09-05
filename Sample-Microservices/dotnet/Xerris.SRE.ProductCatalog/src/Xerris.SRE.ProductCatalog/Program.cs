@@ -1,5 +1,6 @@
 using Xerris.DotNet.Core;
 using Xerris.SRE.ProductCatalog;
+using Xerris.SRE.ProductCatalog.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 

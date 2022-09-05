@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using Xerris.SRE.ProductCatalog.Models;
+using Xerris.SRE.ProductCatalog.Repositories;
 
 namespace Xerris.SRE.ProductCatalog.Controllers;
 

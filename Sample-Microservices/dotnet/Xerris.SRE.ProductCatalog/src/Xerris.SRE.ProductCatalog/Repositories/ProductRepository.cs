@@ -1,6 +1,6 @@
 using Xerris.SRE.ProductCatalog.Models;
 
-namespace Xerris.SRE.ProductCatalog;
+namespace Xerris.SRE.ProductCatalog.Repositories;
 
 public interface IProductRepository {
     IEnumerable<Product> All { get; }
