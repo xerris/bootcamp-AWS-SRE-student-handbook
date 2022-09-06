@@ -1,0 +1,24 @@
+2022-09-06 06:43:59,394 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:6000
+2022-09-06 06:43:59,394 [INFO] [33mPress CTRL+C to quit[0m
+2022-09-06 06:43:59,394 [INFO]  * Restarting with stat
+2022-09-06 06:43:59,559 [WARNING]  * Debugger is active!
+2022-09-06 06:43:59,566 [INFO]  * Debugger PIN: 128-219-677
+2022-09-06 06:50:03,739 [INFO] 127.0.0.1 - - [06/Sep/2022 06:50:03] "GET /products HTTP/1.1" 200 -
+2022-09-06 06:50:22,331 [INFO]  * Detected change in '/Users/greg/Projects/xerris-bootcamps/xfactor-bootcamp-aws-SRE-student-handbook/Sample-Microservices/Python/product-catalog/api.py', reloading
+2022-09-06 06:50:22,353 [INFO]  * Restarting with stat
+2022-09-06 06:50:22,523 [WARNING]  * Debugger is active!
+2022-09-06 06:50:22,527 [INFO]  * Debugger PIN: 128-219-677
+2022-09-06 06:50:27,739 [INFO] 127.0.0.1 - - [06/Sep/2022 06:50:27] "GET /products HTTP/1.1" 200 -
+2022-09-06 06:51:17,891 [INFO]  * Detected change in '/Users/greg/Projects/xerris-bootcamps/xfactor-bootcamp-aws-SRE-student-handbook/Sample-Microservices/Python/product-catalog/api.py', reloading
+2022-09-06 06:51:17,918 [INFO]  * Restarting with stat
+2022-09-06 06:52:40,462 [INFO] initializing the api
+2022-09-06 06:52:40,462 [INFO] This reading in the products
+2022-09-06 06:52:40,470 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:6000
+2022-09-06 06:52:40,470 [INFO] [33mPress CTRL+C to quit[0m
+2022-09-06 06:52:40,471 [INFO]  * Restarting with stat
+2022-09-06 06:52:40,646 [INFO] initializing the api
+2022-09-06 06:52:40,647 [INFO] This reading in the products
+2022-09-06 06:52:40,653 [WARNING]  * Debugger is active!
+2022-09-06 06:52:40,657 [INFO]  * Debugger PIN: 128-219-677
