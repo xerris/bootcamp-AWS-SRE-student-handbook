@@ -1,7 +1,7 @@
 export class Price {
   constructor(
-    private sku: string,
-    private retailPrice: number,
-    private wholesalePrice: number,
+    public sku: string,
+    public retailPrice: number,
+    public wholesalePrice: number,
   ) {}
 }
