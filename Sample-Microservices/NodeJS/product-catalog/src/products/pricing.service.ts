@@ -10,4 +10,8 @@ export class PricingService {
     console.log(pricingUrl);
     return [];
   }
+
+  ping(): String {
+    return "ping";
+  }
 }
