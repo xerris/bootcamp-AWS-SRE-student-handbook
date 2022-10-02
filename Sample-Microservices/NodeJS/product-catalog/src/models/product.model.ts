@@ -1,4 +1,4 @@
-import { Price } from './price.model';
+import { Price } from "./price.model";
 
 export class Product {
   public sku: string;
@@ -10,11 +10,16 @@ export class Product {
     sku: string,
     name: string,
     description: string,
-    manufacturer: string,
+    manufacturer: string
   ) {
     this.sku = sku;
     this.name = name;
     this.description = description;
     this.manufacturer = manufacturer;
+    this.price = new Price(sku, 0, 0);
+  }
+
+  setPrice(price: Price) {
+    this.price = price;
   }
 }
