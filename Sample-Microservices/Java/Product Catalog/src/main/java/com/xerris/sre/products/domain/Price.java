@@ -1,4 +1,4 @@
-package com.xerris.pricing.engine.domain;
+package com.xerris.sre.products.domain;
 
 import java.util.UUID;
 
