@@ -1,14 +1,25 @@
 package com.xerris.sre.products.services;
 
+import com.xerris.sre.products.domain.Price;
 import com.xerris.sre.products.domain.Product;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Predicate;
 
 @Service
 public class ProductsService implements IProductsService {
+
+    private final IPricingService pricingService;
+
+    @Autowired
+    public ProductsService(IPricingService pricingService) {
+        this.pricingService = pricingService;
+    }
 
     private Product[] products = new Product[] {
             new Product(UUID.fromString("d18b1bdb-596a-4fd7-abe5-3bec4bcb6e4d"),
@@ -21,15 +32,29 @@ public class ProductsService implements IProductsService {
 
     @Override
     public Product[] getAllProducts() {
+        var prices = pricingService.getAllPrices();
+        aggregate(products, prices);
         return products;
+    }
+
+    private void aggregate(Product[] products, List<Price> prices) {
+        for (Product each : products) {
+            var price = prices.stream()
+                    .filter(x -> x.getSku().equals(each.getSku())).findFirst();
+            price.ifPresent(each::setPrice);
+        }
     }
 
     @Override
     public Product getProduct(UUID sku) {
         Optional<Product> found = Arrays.stream(products)
                 .filter(x -> x.getSku().equals(sku)).findFirst();
-        if (found.isPresent())
-            return found.get();
+        var price = pricingService.getPrice(sku);
+        if (found.isPresent()) {
+            var product = found.get();
+            product.setPrice(price);
+            return product;
+        }
         return null;
     }
 }
